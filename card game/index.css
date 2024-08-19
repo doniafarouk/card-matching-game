@@ -1,0 +1,441 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /*stack elements vertically */
+    min-height: 100vh;
+    background: #424245;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.info {
+    
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-size: 22px;
+    justify-content: space-evenly;
+    width: 550px; /* info container the same width as the game container */
+}
+
+button {
+    animation: slide 1s ease-in;
+    position: relative;
+    background: #282a3a;
+    color: #fff;
+    border-radius: 5px;
+    padding: 10px 30px;
+    border: 0;
+    cursor: pointer;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px ;
+    margin-bottom: 20px;
+    display: inline-block;
+    border: 2px solid aquamarine;
+    text-decoration: none;
+    z-index: 1;
+    overflow: hidden;
+    transition: color 1s, box-shadow 1s;
+    transition-delay: 0s, 1s;
+}
+
+#reset{
+    display: none;
+    
+}
+
+button:hover{
+    transition-delay: 0s, 1s;
+    color: #fff;
+    box-shadow: 0 0 10px aquamarine,
+                0 0 20px aquamarine,
+                0 0 40px aquamarine,
+                0 0 60px aquamarine,
+                0 0 80px aquamarine,
+                0 0 160px aquamarine;
+}
+
+button::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50px;
+    width: 0;
+    height: 100%;
+    background: aquamarine;
+    transform: skewX(35deg);
+    transition: 1s;
+    z-index: -1;
+}
+
+button:hover:before{
+    width: 100%;
+}
+
+.state {
+    animation: slide 0.7s ease-in;
+    display: none;
+    gap: 40px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #e6e6e6;
+    transition: 0.3s linear;
+}
+
+.game-container {
+    animation: slide 0.7s ease-in;
+    display: none;
+    height: 550px;
+    width: 550px;
+    background: #e6e6e6;
+    border-radius: 10px;
+    padding: 25px;
+    transition: 0.3s linear;
+
+}
+
+.all-cards, .card, .card-shape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.all-cards {
+    height: 100%;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.all-cards .card {
+    cursor: pointer;
+    position: relative;
+    perspective: 800px;
+    transform-style: preserve-3d;
+    height: calc(100% / 4 - 10px);
+    width: calc(100% / 4 - 10px);
+}
+
+.all-cards .card:hover{
+    box-shadow: 0px 0px 5px 5px aquamarine;
+}
+
+.card {
+    transition: transform 0.5s;
+}
+
+.card .back {
+    background-color: rgb(7, 1, 22);
+}
+
+.card .front {
+    transform: rotateY(-180deg);
+    background-color: #d1d1e4;
+}
+
+.card.flipping .front {
+    transform: rotateY(0deg);
+}
+
+.card.flipping .back {
+    transform: rotateY(180deg);
+}
+
+.card.notMatchedShake {
+    animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-13px);
+    }
+    40% {
+        transform: translateX(13px);
+    }
+    60% {
+        transform: translateX(-8px);
+    }
+    80% {
+        transform: translateX(8px);
+    }
+}
+
+.all-cards .card .card-shape {
+    width: 100%;
+    height: 100%;
+    user-select: none; /* To select all the li not only the image */
+    pointer-events: none;
+    position: absolute;
+    border-radius: 7px;
+    backface-visibility: hidden;
+    transition: transform 0.35s linear;
+    box-shadow: 2px 3px 10px rgba(39, 7, 92, 0.8);
+    
+}
+
+.front-image {
+    max-width: 65px;
+    object-fit: cover;
+}
+
+.back-image {
+    max-width: 120px;
+    object-fit: cover;
+}
+
+.message {
+    background-color: rgba(100,100,100,0.6);
+    display: none;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.welcome{
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+h1{
+    color: aquamarine;
+    font-weight: bold;
+}
+h2{
+    color: aquamarine;
+    font-weight: normal;
+    text-align: center;
+}
+h3{
+    color: antiquewhite;
+    margin-top: 70px;
+    font-size: 0.7em;
+    font-style: italic;
+}
+
+@keyframes slide {
+    from{
+        transform: translateX(-300px);
+    }
+
+    to{
+        transform: translateX(0);
+    }
+    
+}
+.countdown {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 100px;
+    color: aquamarine;
+    font-weight: bold;
+    text-align: center;
+    z-index: 200;
+    background-color: rgba(100,100,100,0.6);
+
+}
+
+#leaderboardContainer {
+    margin-top: 20px;
+    background: #282a3a;
+    width: 700px;
+    padding: 30px;
+    border-radius: 50px;
+}
+
+.scroll{
+    width: 650px;
+    background: #282a3a;
+    height: 300px;
+    overflow: hidden;
+    overflow-y: scroll ;
+
+}
+.scrollObj{
+    color: antiquewhite;
+    padding: 20px;
+
+}
+
+#leaderboard {
+    list-style: none;
+    padding: 0;
+    
+}
+
+#leaderboard li {
+    font-size: 18px;
+    padding: 5px 0;
+}
+
+.username-container {
+    top: 150px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    display: none;
+}
+
+#submitUsername{
+    margin-top: 150px;
+}
+
+.username-container input[type="text"] {
+    position: absolute;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    margin-right: 10px;
+    outline: none;
+    background: transparent;
+    transition: 0.1s ease;
+    z-index: 1111;
+    line-height: 20px;
+    width: 300px;
+    
+}
+
+.placeholder{
+    position: absolute;
+    font-size: 20px;
+    color: #eee;
+    padding: 0 10px;
+    margin: 10px 10px;
+    transition: 0.2s ease;
+    
+}
+
+.username-container input[type="text"]:focus + .placeholder
+,.username-container input[type="text"]:valid + .placeholder{
+    color: aquamarine;
+    height: 30px;
+    line-height: 30px;
+    transform: translate(-55px,-30px) scale(0.88);
+    z-index: 1111;
+    font-weight: bold;
+    background-color: rgba(100,100,100,0);
+}
+
+.username-container input[type="text"]:focus,
+.username-container input[type="text"]:valid{
+    color: aquamarine;
+    border: 4px solid aquamarine;
+}
+
+.username-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #282a3a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.username-container button:hover {
+    background-color: #1c1e2a;
+}
+
+input[type="checkbox"]{
+    position: relative;
+    width: 120px;
+    height: 40px;
+    -webkit-appearance: none;
+    background: linear-gradient(0deg , #333,#000);
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.2);
+}
+
+input:checked[type="checkbox"]{
+    background: linear-gradient(0deg , rgb(121, 230, 193),aquamarine);
+    box-shadow: 0 0 2px rgb(121, 230, 193),0 0 0 4px #353535, 0 0 0 5px #3e3e3e, inset 0 0 10px rgba(0,0,0,1), 0 5px 20px rgba(0,0,0,0.5), inset 0 0 15px rgba(0,0,0,0.2);
+
+}
+
+input[type="checkbox"]:before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    height: 40px;
+    background: linear-gradient(0deg , #000,#6b6b6b);
+    border-radius: 20px;
+    box-shadow: 0 0 0 1px #232323;
+    transform: scale(0.98,0.97);
+    transition: 0.5s;
+
+}
+
+input:checked[type="checkbox"]:before{
+    left: 40px;
+}
+
+input[type="checkbox"]:after{
+    content: '';
+    position: absolute;
+    top: 18px;
+    left: 65px;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(0deg, #6b6b6b,#000);
+    border-radius: 50%;
+    transition: 0.5s;
+
+}
+
+input:checked[type="checkbox"]:after{
+    background: rgb(88, 172, 144);
+    left: 105px;
+    box-shadow: 0 0 5px aquamarine, 0 0 15px aquamarine ;
+}
+
+#enableLeaderboard{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.points{
+    display: block;
+    font-size: 0.5em;
+    color: antiquewhite;
+    margin-top: 30px;
+}
+
+.points li{
+    list-style-type: none;
+    margin-top: 15px;
+}

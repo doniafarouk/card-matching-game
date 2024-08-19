@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Card Matching Game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="countdown"></div>
+    <div class="welcome">
+        <h1>Card Matching Game</h1>
+        <h2>Lets Play!<br>
+            <span class="points">
+                <ul><span style="font-weight: bold; text-decoration: underline;">Score Points</span>: 
+                    <li> 1 pair matched = 1 point</li>
+                    <li>2 consecutive pair matched = 2 points </li>
+                    <li>The points are incremented by 1 if you make consecutive matches</li>
+                </ul>
+            </span>
+        </h2>
+        <h3>press button to start</h3>
+    </div>
+    <div class="info">
+        <div class="state">
+            <div class="flips">Flips count: 0</div>
+            <div class="timer">Timer: 60</div>
+            <div class="score">Score: 0</div>
+        </div>
+    </div>
+    <div class="game-container">
+        <audio id="clickSound">
+            <source src="sounds/Audio_flip.wav">
+        </audio>
+        <audio id="matchSound">
+            <source src="sounds/Audio_match.wav">
+        </audio>    
+        <audio id="VictorySound">
+            <source src="sounds/Audio_victory.wav">
+        </audio>  
+        <audio id="gameOverSound">
+            <source src="sounds/Audio_gameover.wav">
+        </audio>        
+        <ul class="all-cards">
+            <li class="card clickable">
+                <div class="back card-shape">
+                    <img class="back-image" src="assets/images/cover2.1.png">
+                </div>
+                <div class="front card-shape">
+                    <img class="front-image" src="assets/images/rose-1.1.png">
+                </div>
+            </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/rose-1.1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/baby_s_breath 2.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/baby_s_breath 2.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/sunflower1.1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/sunflower1.1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/tulip-1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/tulip-1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/magnolia1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/magnolia1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/forget_me_not1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/forget_me_not1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/violet1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/violet1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/crocus1.png">
+            </div>
+        </li>
+        <li class="card clickable">
+            <div class="back card-shape">
+                <img class="back-image" src="assets/images/cover2.1.png">
+            </div>
+            <div class="front card-shape">
+                <img class="front-image" src="assets/images/crocus1.png">
+            </div>
+        </li>
+        </ul>
+        <div class="message"></div>
+    </div>
+    <div class="info">
+        <button>start</button>
+        <button id="reset">Reset</button>
+    </div>
+    <label for="enableSound" style="color: antiquewhite; margin-bottom: 20px;">Sound</label>
+    <input type="checkbox" id="enableSound" checked>
+    <label for="enableLeaderboard" style="color: antiquewhite; margin-top: 20px;">Leaderboard</label>
+    <input type="checkbox" id="enableLeaderboard">
+    <div id="leaderboardContainer" style="display: none;">
+        <div class="scroll">
+            <div class="scrollObj">
+                <h2 style="font-weight: bold; margin-bottom: 20px;">Leaderboard</h2>
+                <div id="leaderboard">
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="username-container" style="display: none;">
+        <input type="text" id="username" required>
+        <div class="placeholder">Enter your name</div>
+        <button id="submitUsername">Submit</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
